@@ -14,13 +14,10 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  if (a==b && b==c)
-  	:equilateral
-  elsif (a!=b && b!=c && c!=a)
-  	:scalene
-  else
-  	:isosceles
-  end
+  args = [a, b, c].sort
+  raise TriangleError if args[0] + args[1] <= args[2]
+  raise TriangleError if args[0] <= 0
+  [:equilateral, :isosceles, :scalene][args.uniq.length-1]
 end
 
 # Error class used in part 2.  No need to change this code.
